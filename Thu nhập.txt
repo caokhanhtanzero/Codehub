@@ -1,0 +1,84 @@
+double getMonthlyIncome(double workHours) {
+    if (workHours > 200) return 100*12000 + 50*16000 + 50*20000 + (workHours - 200)*25000;
+    else if (workHours > 150) return 100*12000 + 50*16000 + (workHours - 150)*20000;
+    else if (workHours > 100) return 100*12000 + (workHours - 100)*16000;
+    else return workHours*12000;
+}
+
+
+
+double getIncomeAfterTax(double incomeBeforeTax) {
+    double income_tax = incomeBeforeTax - incomeBeforeTax*0.09;
+    double tax;
+    if (income_tax > 2e6) tax = 5e5*0.1 + 5e5*0.15 + (income_tax - 2e6)*0.2;
+    else if (income_tax > 1.5e6) tax = 5e5*0.1 + (income_tax - 1.5e6)*0.15;
+    else if (income_tax > 1e6) tax = (income_tax - 1e6)*0.1;
+    else tax = 0;
+    return income_tax - tax;
+}
+
+
+
+double getDebt(double principal, int months, double rate) {
+    double debt = principal;
+    for (int i = 1; i <= months; i++) {
+        debt = round(principal + principal*rate);
+        principal = round(debt);
+    }
+    return debt;
+}
+
+
+
+int getMonthInDebt(double principal, double rate, double monthlyPayment) {
+    if (principal*rate >= monthlyPayment) return -1;
+    else {
+        int result = 0;
+        while (principal > 0){
+            result++;
+            principal += principal*rate;
+            principal -= monthlyPayment;
+        }
+        return result;
+    }
+}
+
+
+
+
+
+double getMonthlyIncome(double workHours) {
+    if (workHours > 200) return 100*12000 + 50*16000 + 50*20000 + (workHours - 200)*25000;
+    else if (workHours > 150) return 100*12000 + 50*16000 + (workHours - 150)*20000;
+    else if (workHours > 100) return 100*12000 + (workHours - 100)*16000;
+    else return workHours*12000;
+}
+
+double getIncomeAfterTax(double incomeBeforeTax) {
+    double income_tax = incomeBeforeTax - incomeBeforeTax*0.09;
+    double tax;
+    if (income_tax > 2e6) tax = 5e5*0.1 + 5e5*0.15 + (income_tax - 2e6)*0.2;
+    else if (income_tax > 1500000) tax = 5e5*0.1 + (income_tax - 1500000)*0.15;
+    else if (income_tax > 1e6) tax = (income_tax - 1e6)*0.1;
+    else tax = 0;
+    return income_tax - tax;
+}
+
+int getMonthInDebt(double principal, double rate, double monthlyPayment) {
+    if (principal*rate >= monthlyPayment) return -1;
+    else {
+        int result = 0;
+        while (principal > 0){
+            result++;
+            principal += principal*rate;
+            principal -= monthlyPayment;
+        }
+        return result;
+    }
+    
+}
+
+int getMonthInDebt(double principal, double rate, int monthlyWorkHours, double monthlyExpense) {
+    double monthlyPayment = getIncomeAfterTax(getMonthlyIncome(monthlyWorkHours)) - monthlyExpense;
+    getMonthInDebt(principal, rate, monthlyPayment);
+}
