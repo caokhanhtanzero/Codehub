@@ -1,0 +1,61 @@
+#include <iostream>
+#include <cstring>
+#include <cmath>
+using namespace std;
+char digits[20][10] = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+char tens[11][10] =  {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+
+void word(int num) {
+    if (num/100>0) cout << digits[num/100] << " hundred ";
+    if ((num % 100) < 20 && (num % 100) > 0) cout << digits[num % 100] << " ";
+    else if((num/10) % 10) {
+        cout << tens[(num/10) % 10] << "-";
+        if (num % 10) cout << digits[num % 10] << " ";
+    }
+}
+
+int main() {
+    int num;
+    cin >> num;
+    int a = abs(num);
+    int bn = a / 1e9;
+    int mn = (a / 1000000)%1000;
+    int th = (a / 1000) % 1000;
+    int hd = a % 1000;
+    if (num < 0) {
+	    cout << "negative ";
+        if (bn) {
+            word(bn);
+            cout << "billion ";
+        }
+        if (mn) {
+            word(mn);
+            cout << "million ";
+        }
+        if (th) {
+            word(th);
+            cout << "thousand ";
+        }
+        if (hd) {
+            word(hd);
+        }
+    } else {
+    	if ((bn + mn + th + hd) == 0) cout << "zero";
+        if (bn) {
+            word(bn);
+            cout << "billion ";
+        }
+        if (mn) {
+            word(mn);
+            cout << "million ";
+        }
+        if (th) {
+            word(th);
+            cout << "thousand ";
+        }
+        if (hd) {
+            word(hd);
+        }
+	}
+    return 0;
+}
