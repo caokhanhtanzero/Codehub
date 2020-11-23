@@ -1,0 +1,44 @@
+class BankAccount {
+    int balance; // so du tai khoan
+    string name; // ten chu tai khoan
+public:
+    BankAccount(string name, int balance = 0) {
+        this->name=name;
+        this->balance=balance;
+    }
+    
+    void printInfo() const {
+        cout << "Ten chu tai khoan: " << this->name << endl << "So du tai khoan: " << this->balance << endl;
+    }
+    
+    BankAccount& deposit(int amount) {
+        if( amount <= 100000 ) {
+            this->balance += amount;
+        }
+        else this->balance += 100000;
+        return *this;
+    }
+    
+    BankAccount& withdraw(int amount) {
+        if(amount > this->balance) cout << "LOI: Khong the rut so tien lon hon so du hien tai" << endl;
+        else this->balance -= amount;
+        return *this;
+    }
+    
+    BankAccount& transferTo(BankAccount& account, int amount) {
+            if (amount > 50000) {
+                if(amount > this->balance) cout << "LOI: Khong the chuyen so tien lon hon so du hien tai" << endl;
+                else {
+                    this->balance -= 50000;
+                    account.deposit(50000);
+                }
+            } else {
+                if(amount > this->balance) cout << "LOI: Khong the chuyen so tien lon hon so du hien tai" << endl;
+                else {
+                    this->balance -= amount;
+                    account.deposit(amount);
+                }
+            }
+        return *this;
+    }
+};
