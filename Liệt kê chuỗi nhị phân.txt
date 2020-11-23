@@ -1,0 +1,79 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+ 
+void gen(int a[], int n) {
+    a[n - 1] ++;
+    for (int i = n - 1; i > 0; --i) {
+        if (a[i] > 1) {
+            a[i - 1] ++;
+            a[i] -= 2;
+        }
+    }
+}
+ 
+void xuat(int a[], int n) {
+    for (int i = 0; i < n; i++)
+        cout << a[i];
+        cout << endl;
+}
+ 
+int main(){
+    int n;
+    cin >> n;
+    int a[100];
+    //Xây dựng cấu hình đầu tiên
+    for (int i = 0; i < n; i++) a[i] = 0;
+    //In cấu hình hiện tại và xây dựng cấu hình kế tiếp
+    for (int i = 0; i < pow(2, n); i++) {
+        xuat(a, n);
+        gen(a, n);
+    }
+}
+ 
+
+
+
+#include <iostream>
+using namespace std;
+
+int giaiThua(int n) {
+    if (n == 1 || n == 0)
+        return 1;
+    return n * giaiThua(n - 1);
+}
+
+void print(int a[], int n) {
+    for (int i = 0; i < n; i++) cout << a[i] ;
+    cout << endl;
+}
+
+void permute(int a[], int x, int y, int n) {
+	int m = 0;
+    while (m < (giaiThua(n)) / (giaiThua(x) + giaiThua(y))) {
+        print(a, n);
+        int k, l;
+        for (k = n-2; k>=0; k--) if (a[k] < a[k+1]) break; // Buoc 1
+        if (k<0) break;                                    
+        for (l = n-1; l>k; l--) if (a[k] < a[l]) break; // Buoc 2
+        swap(a[k], a[l]); // Buoc 3
+        for (int i=k+1, j=n-1; i<j; i++, j--) swap(a[i], a[j]); // Buoc 4
+        m++;
+    }
+}
+
+int main() {
+    int x, y;
+    cin >> x >> y;
+    int a[100];
+    for (int i = 0; i < x; i++) {
+    	a[i] = 0;
+	}
+	for (int j = x; j < x + y; j++) {
+		a[j] = 1;
+	}
+	if (x == 0 || y == 0) {
+	    print(a, x+y);
+	} else	permute(a, x, y, x + y);
+    return 0;
+}
