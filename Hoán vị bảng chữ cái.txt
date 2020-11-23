@@ -1,0 +1,42 @@
+#include <iostream> 
+#include <cstring>
+#include <cmath>
+using namespace std; 
+
+char alphabet[27] = {' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+bool check(string s, char tmp, int k) {
+    if (s.length() == 0)
+        return true;
+    else if (s.length() > 0) {
+        if (abs( s[s.length() - 1] - tmp) > k)
+            return false;
+    }
+    return true;
+}
+
+void generate(char alp[], int i, string s, int len, int k) {
+    if (i == 0) {
+        cout << s << "\n";
+        return;
+    }
+    for (int j = 0; j < len; j++) {
+        if (check(s, alp[j], k) == true) {
+            string appended = s + alp[j];
+            generate(alp, i - 1, appended, len, k);
+        }
+    }
+    return; 
+}
+
+int main() {
+    char alp[100];
+    int m, n, k;
+    cin >> m >> n >> k;
+    for (int i = 0; i < n; i++) {
+        alp[i] = alphabet[i + 1];   
+    }
+    int len = strlen(alp);
+    generate(alp, m, "", len, k);
+    return 0; 
+}
