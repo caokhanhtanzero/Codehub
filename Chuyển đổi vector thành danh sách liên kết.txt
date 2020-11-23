@@ -1,0 +1,23 @@
+vector<int> linkedListToVector(Node* head)
+{
+    vector<int> input;
+    while (head != NULL) {
+        input.push_back(head->value);
+        head = head->next;
+    }
+    return input;
+}
+
+void insert(Node** head, int i) {
+    Node* temp = new Node;
+    temp->value = i;
+    temp->next = *head;
+    *head = temp;
+}
+
+Node* vectorToLinkedList(vector<int> values) {
+   Node *head = NULL; 
+    for (int i = values.size() - 1; i >= 0 ; i--) 
+        insert(&head, values[i]); 
+    return head; 
+}
