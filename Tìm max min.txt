@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    double max = -1000000;
+    double min = 1000000;
+    while (n--) {
+        double tmp;
+        cin >> tmp;
+        if (tmp < min) {
+            min = tmp;
+        }
+        if (tmp > max) {
+            max = tmp;
+        }
+    }
+    cout << max << endl << min;
+    return 0;
+}
