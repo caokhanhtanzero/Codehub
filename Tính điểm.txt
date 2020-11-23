@@ -1,0 +1,97 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Node{
+    int value;
+    struct Node* nextNode;
+    
+    Node(int x)
+    {
+    	value = x;
+    	nextNode = NULL;	
+	}
+};
+
+struct Stack{
+	struct Node* top;
+	Stack()
+	{
+		top = NULL;
+	}
+	void push(int value)
+	{
+		struct Node* newNode = new Node(value);
+		if(top == NULL)
+		{
+			top = newNode;
+		}
+		else
+		{
+			newNode->nextNode = top;
+			top = newNode;
+		}
+	}
+	
+	void pop()
+	{
+		if (top == NULL)
+		{
+			return;
+		}
+		struct Node* temp = top;
+		top = top->nextNode;
+		temp->nextNode = NULL;
+		delete(temp);
+	}
+	
+	void showLast()
+	{
+		if (top == NULL)
+		{
+			return;
+		}
+		cout << top->value << endl;
+	}
+};
+int gradeBySum(Stack s){
+    int last = s.top->value;
+    s.pop();
+    int result = s.top->value;
+    s.push(last);
+    return result + last;
+}
+int gradeByDouble(Stack s){
+    return s.top->value * 2;
+}
+int main(){
+    Stack s;
+    int grade, n, sum = 0;
+    string input;
+    cin >> n;
+    while(n > 0){
+        cin >> input;
+        // cout << "--" << input << "--\n";
+        if(input == "C"){
+            sum -= s.top->value;
+            s.pop();
+            
+        }
+        else {
+            int newGrade;
+            if(input == "D"){
+                newGrade = gradeByDouble(s);
+            }
+            else if (input == "+"){
+                newGrade = gradeBySum(s);
+            } else {
+                newGrade = atoi(input.c_str());
+            }
+            sum += newGrade;
+            s.push(newGrade);
+        }
+        n--;
+    }
+    cout << sum;
+    return 0;
+}
