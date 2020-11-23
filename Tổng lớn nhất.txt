@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+ 
+void NhapMang(int a[], int n){
+    for(int i = 0;i < n; i++){
+        cin >> a[i];
+    }
+}
+
+void tong_k_lon_nhat(int a[], int n, int k) {
+	int max = 0, s;
+	for (int j = 0; j <= n - k; j++) {
+		s=0;
+		for (int i = j; i < j + k; i++) {
+			s = s + a[i];
+		}
+		if (s > max){
+			max = s;
+		}
+	}
+	cout << max;
+}
+
+int main() {
+    int a[1000], n;
+    cin >> n;
+    NhapMang(a, n);
+    tong_k_lon_nhat(a, n, 4);
+}
