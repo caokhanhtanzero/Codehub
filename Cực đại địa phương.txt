@@ -1,0 +1,31 @@
+#include<iostream>
+#define MAX 100
+using namespace std;
+
+int TongPTCucDai(int a[], int n) {
+	int i, tong = 0;
+	if (a[0] > a[1])
+		tong = tong + a[0];
+	if (a[n - 1] > a[n - 2])
+		tong = tong + a[n - 1];
+	for (i = 1; i < n - 1; i++) {
+		if (a[i - 1] < a[i] && a[i] > a[i + 1])
+			tong = tong + a[i];
+	}
+		return tong;
+	return 0;
+}
+
+int main() {
+	int a[MAX], i, n, kq;
+	char c;
+	do
+    {
+        cin >> a[n];
+        n++;
+        c = getchar();
+    } while(c != '\n');
+	
+
+	cout << TongPTCucDai(a, n);
+}
