@@ -1,0 +1,22 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+void Xoa(char s[], int vitrixoa) {
+	int n = strlen(s); 
+	for(int i = vitrixoa; i < n - 1; i++) {
+		s[i] = s[i + 1];
+	}
+	s[n - 1] = '\0';
+}
+
+
+int main() {
+	char s[100]; 
+	cin >> s;
+	int vitrixoa;
+	cin >> vitrixoa;
+	Xoa(s, vitrixoa);
+	cout << s;
+	return 0;
+}
