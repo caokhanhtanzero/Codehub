@@ -1,0 +1,27 @@
+Node* insertTail(Node* head, int value) {
+    Node* temp = new Node;
+    temp->value = value;
+    temp->next = NULL;
+    if (head == NULL) head = temp;
+    else {
+        Node* p = head;
+        while (p->next != NULL) {
+            p = p->next;
+        }
+        p->next = temp;
+    }
+    return head;
+}
+
+Node* extractNodes(Node* head, int threshold) {
+    Node* ans = NULL;
+    Node *p = head;
+    while (p != NULL) {
+        int x = p->value;
+        if (x < threshold) {
+            ans = insertTail(ans, x);
+        }
+        p = p->next;
+    }
+    return ans;
+}
