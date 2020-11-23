@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+void sumColumn(int a[][1000], int m, int n) {
+    for (int i = 0; i < n; i++) {
+        int s = 0;
+        for (int j = 0; j < m; j++) {
+            s += a[j][i];
+        }
+        cout << s << " ";
+    }
+}
+
+int main() {
+    int a[1000][1000], m, n;
+    
+    cin >> m >>n;
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> a[i][j];
+        }
+    }
+    sumColumn(a, m, n);
+}
