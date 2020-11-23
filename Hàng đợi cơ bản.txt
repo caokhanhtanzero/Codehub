@@ -1,0 +1,67 @@
+#include <iostream> 
+#include <cmath>
+using namespace std;
+
+struct Node{
+    int value;
+    struct Node* nextNode;
+
+    Node(int x) {
+        value = x;
+        nextNode = NULL; 
+    }
+};
+
+struct Queue{
+    struct Node* head;
+    struct Node* tail;
+    Queue() {
+        head = NULL;
+        tail = NULL;
+    }
+
+    void enQueue(int value) {
+        struct Node* newNode = new Node(value);
+        if (tail == NULL) {
+            head = newNode; 
+            tail = newNode;
+        } else {
+            tail->nextNode = newNode;
+            tail = newNode; 
+        }
+    }
+
+    void deQueue() {
+        if(head == NULL) {
+            cout << head << endl;
+            return;
+        }
+    
+        struct Node* temp = head;
+        head = head->nextNode; 
+        if (head == NULL) {
+            tail = NULL;
+        }
+        delete(temp);
+    }
+};
+
+
+int main() {
+    struct Queue queue = Queue();
+    int n;
+    cin >> n;
+    int operation, value;
+    for(int i = 0; i < n; i++) {
+        cin >> operation;
+        if(operation == 1) {
+            cin >> value;
+            queue.enQueue(value);
+        } else if (operation == 2) {
+             queue.deQueue();
+        } else if (operation == 3) {
+            cout << queue.head->value << endl;
+        }
+    }
+    return 0;
+}
