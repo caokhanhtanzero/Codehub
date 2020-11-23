@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+    string tenFile;
+    int n;
+	fstream f;
+	cin >> tenFile;
+	int a[100];
+	f.open(tenFile, ios::in);
+	if(!f.is_open()) {
+        cout << "Khong the mo file.\n";
+        return 0;
+    } else {
+        f >> n;
+        for (int i = 0; i < n; i++) {
+            f >> a[i];
+        }
+    }
+    
+    int L, R, i, j, temp, x;
+    L = 0;
+    R = n - 1;
+    while (L < R){
+        x = a[n/2];
+        i = L;
+        j = R;
+        while (i < j) {
+            while (a[i] < x) i++;
+            while (a[j] > x) j--;
+            if(i <= j) {
+                temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+                i++;
+                j--;
+            }
+        }
+        if (j < n/2) L = i;
+        if (n/2 < i) R = j;
+    }
+        cout << a[2];
+    f.close();
+}
