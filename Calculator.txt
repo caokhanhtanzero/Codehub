@@ -1,0 +1,146 @@
+int arithmetic(int num1, int num2, char op) {
+    switch (op) {
+        case '+': {
+            return num1 + num2;
+        }
+        case '-': {
+            return num1 - num2;
+        }
+        case 'x': {
+            return num1 * num2;
+        }
+        case '/': {
+            return num1 / num2;
+        }
+    }
+}
+
+
+
+double mathFunc(double num, string op) {
+    if (op == "sin") return sin(num);
+    if (op == "cos") return cos(num);
+    if (op == "sqrt") return sqrt(num);
+}
+
+
+
+void calculate(int argc, char* argv[]) {
+    /*cin >> argc;
+    for (int i = 1; i < argc; i++) {
+        argv[i] = new char[20];
+        cin >> argv[i];
+    }*/
+    
+    if (argc == 3) {
+        int num = atoi(argv[2]);
+        cout << fixed << setprecision(2) << mathFunc(num, argv[1]);
+    }
+    
+    if(argc == 4) {
+        int num1 = atoi(argv[1]);
+        int num2 =  atoi (argv[3]);
+        int result = arithmetic(num1, num2, argv[2][0]);
+        cout << result;
+    }
+}
+
+
+
+string getError(double num, string op) {
+    string s = "Invalid function";
+    if (op == "sin" || op == "cos" || op == "sqrt") {
+        if (num < 0 && op == "sqrt") return s;
+        else return "";
+        return "";
+    }
+    return s;
+}
+
+
+
+
+string getError(int num1, int num2, char op) {
+    string s = "Invalid operator";
+    string s1 = "Divided by zero";
+    if (op == '+' || op == '-' || op == 'x' || op == '/') {
+        if (num2 == 0 && op == '/') return s1;
+        return "";
+    }
+    return s;
+}
+
+
+
+
+void calculate(int argc, char* argv[]) {
+    /*cin >> argc;
+    for (int i = 1; i < argc; i++) {
+        argv[i] = new char[20];
+        cin >> argv[i];
+    }*/
+    
+    if (argc == 3) {
+        double num = atoi(argv[2]);
+        string getEr = getError(num, argv[1]);
+        if (getEr.compare("") == 0) cout << fixed << setprecision(2) << mathFunc(num, argv[1]);
+        else cout << getEr;
+    }
+    
+    if(argc == 4) {
+        int num1 = atoi(argv[1]);
+        int num2 =  atoi (argv[3]);
+        string getEr = getError(num1, num2, argv[2][0]);
+        if (getEr.compare("") == 0) cout << arithmetic(num1, num2, argv[2][0]);
+        else cout << getEr;
+    }
+}
+
+
+
+
+int arithmetic(int num1, int num2, char op) {
+    switch (op) {
+        case '+': {
+            return num1 + num2;
+        }
+        case '-': {
+            return num1 - num2;
+        }
+        case 'x': {
+            return num1 * num2;
+        }
+        case '/': {
+            return num1 / num2;
+        }
+        case '%': {
+            return num1 % num2;
+        }
+    }
+}
+
+string getError(int num1, int num2, char op) {
+    string s = "Invalid operator";
+    string s1 = "Divided by zero";
+    if (op == '+' || op == '-' || op == 'x' || op == '/' || op == '%') {
+        if ((num2 == 0 && op == '/') || (num2 == 0 && op == '%')) return s1;
+        return "";
+    }
+    return s;
+}
+
+/*void calculate(int argc, char* argv[]) {
+    cin >> argc;
+    for (int i = 1; i < argc; i++) {
+        argv[i] = new char[20];
+        cin >> argv[i];
+    }
+    
+    if(argc == 4) {
+        int num1 = atoi(argv[1]);
+        int num2 =  atoi (argv[3]);
+        string getEr = getError(num1, num2, argv[2][0]);
+        if (getEr.compare("") == 0) cout << arithmetic(num1, num2, argv[2][0]);
+        else cout << getEr;
+    }
+}*/
