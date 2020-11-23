@@ -1,0 +1,270 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+    string a,b;
+    cin >> a >> b;
+    int count = 0, point = 0;
+    for (int i = 0 ; i <  a.length() ; i ++)
+    {
+        int k = i;
+        int count1 = 0;
+        for (int j = 0 ; j < b.length() ; j ++)
+        {
+            if (b[j] != a[k])
+            {
+                break;
+            }
+            else
+            {
+                k++;
+                count1++;
+            }
+        }
+        if(count1 == b.length())
+        {
+            count++;
+        }
+    }
+    cout<<count;
+}
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+#include <string.h>
+int strStr (string s1, string s2)
+{
+    return s1.find(s2);
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+// Language: Java
+import java.io.*;
+import java.util.Scanner;
+
+public class soulution{
+    public static void main(String[] args){
+        Scanner cin = new Scanner(System.in);
+        int n = cin.nextInt();
+        int arr[] = new int[n];
+        int max = -1;
+        for (int i = 0 ; i < n ; i ++)
+        {
+            arr[i] = cin.nextInt();
+            if (arr[i] > max)
+            {
+                max = arr[i];
+            }
+        }
+        int fren[] = new int[max + 1];
+        int maxFren = -1;
+        for (int i = 0 ; i < n ; i ++)
+        {
+            fren[arr[i]]++;
+            if (fren[arr[i]] > maxFren){
+                maxFren = fren[arr[i]];
+            }
+        }
+        for (int i = max  ; i >= 0 ; i--)
+        {
+            if(maxFren == fren[i])
+            {
+                System.out.print(i);
+                break;
+            }
+        }
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#include <iostream>
+using namespace std;
+void sieve(int N) {
+    bool isPrime[N+1];
+    for(int i = 0; i <= N;++i) {
+        isPrime[i] = true;
+    }
+    isPrime[0] = false;
+    isPrime[1] = false;
+    for(int i = 2; i * i <= N; ++i) {
+         if(isPrime[i] == true) {
+             
+             for(int j = i * 2; j <= N; j += i)
+                 isPrime[j] = false;
+        }
+    }
+    for ( int i = N ; i >= 0 ; i --)
+    {
+        if (isPrime[i] == true)
+        {
+            cout<<i<<endl;
+            break;
+        }
+    }
+}
+int main()
+{
+    int n;
+    cin >> n;
+    if (n <= 2)
+    {
+        cout<<-1;
+    }
+    else
+    {
+        sieve(n - 1);
+    }
+    
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    string s;
+    cin >> s;
+    int fren[123] = {};
+    bool checkAns = true;
+    for (int i =  0 ; i < s.length() ; i ++)
+    {
+        int x = int(s[i]);
+        fren[x]++;
+    }
+    vector<int> arrFren;
+    for (int i = 65 ; i <= 122 ; i ++)
+    {
+        if (fren[i] > 0)
+        {
+            arrFren.push_back(fren[i]);
+        }
+    }
+    for (int i = 0 ; i < arrFren.size() - 1 ; i ++)
+    {
+        if (arrFren[i] != arrFren[i + 1])
+        {
+            checkAns = false;
+            break;
+        }
+    }
+    if(checkAns)
+    {
+        cout<<"YES"<<endl;
+        cout<<arrFren[0];
+    }
+    else
+    {
+        cout<<"NO"<<endl;
+        for (int i = 65 ; i <= 122 ; i ++)
+        {
+            if (fren[i] > 0)
+            {
+                cout<<char(i)<<" "<<fren[i]<<endl;
+            }
+        }
+        
+    }
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+    int n;
+    cin >> n;
+    string grid[n];
+    for(int i = 0; i < n;i++)
+       cin >> grid[i];
+    for(int i=1;i<n-1;i++)
+    {
+        for(int j=1;j<n-1;j++)
+        {
+         
+            if(grid[i][j-1]<grid[i][j] && grid[i][j+1]<grid[i][j] && grid[i-1][j]<grid[i][j] && grid[i+1][j]<grid[i][j])
+                  grid[i][j]='X';
+        }
+        
+        
+           
+    }
+    for(int i = 0; i < n;i++)
+       cout<<grid[i]<<endl;
+    
+    return 0;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#include <iostream>
+using namespace std;
+
+bool isAnagram(string s1, string s2) {
+    if(s1.size()!=s2.size())
+        return false;
+    
+    int hash[26]={0};
+    
+    for(int i=0;i<s1.size();i++){
+        hash[s1[i]-'a']++;
+        hash[s2[i]-'a']--;
+    }
+    
+    for(int i=0;i<25;i++)
+    {
+        if(hash[i]!=0)
+            return false;
+    }
+    
+    return true;
+}
+
+int main() {
+	string s1, s2;
+	cin >> s1 >> s2;
+    if(isAnagram(s1, s2)==1) cout << "YES";
+    else cout << "NO";
+}
