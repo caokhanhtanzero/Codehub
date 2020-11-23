@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    long long int n;
+    cin >> n;
+    long long int mx = 0, yx = 0;
+    while (n--) {
+        long long int x, y;
+        cin >> x >> y;
+        if (mx == 0 && yx == 0) {
+            mx = x;
+            yx = y;
+        }
+        if (yx > y) yx = y;
+        if (mx > x) mx = x;
+    }
+    cout << mx*yx;
+    return 0;
+}
