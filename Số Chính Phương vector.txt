@@ -1,0 +1,9 @@
+vector<int> list_square(int a, int b) {
+    vector<int> A;
+    for (int i = a; i < b; i++) {
+        if (sqrt(i) == (int)sqrt(i)) {
+            A.push_back(i);
+        }
+    }
+    return A;
+}
