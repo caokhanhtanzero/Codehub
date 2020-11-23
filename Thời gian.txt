@@ -1,0 +1,85 @@
+class Time {
+    int hours;
+    int minutes;
+    int seconds;
+public
+    int hour() {
+        return hours;
+    }
+    
+    int minute() {
+        return minutes;
+    }
+    
+    int second() {
+        return seconds;
+    }
+    
+    Time() {
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
+    }
+    Time(int hour_, int minute_, int second_) {
+        int x = hour_3600 + minute_60 + second_;
+        
+        if (second_  59  minute_  59) {
+            hour_ = x3600;
+            minute_ = x % 3600  60;
+            second_ = x % 3600 % 60;
+        }
+        hours = hour_;
+        minutes = minute_;
+        seconds = second_;
+    }
+    
+    Time(int hour_, int minute_) {
+        hours = hour_;
+        minutes = minute_;
+        seconds = 0;
+    }
+    
+    Time(int hour_) {
+        hours = hour_;
+        minutes = 0;
+        seconds = 0;
+    }
+    
+    friend ostream& operator (ostream& os, const Time& tm) {
+        if (tm.hours  10) os  0  tm.hours  ;
+        else os  tm.hours  ;
+        
+        if (tm.minutes  10) os  0  tm.minutes  ;
+        else os  tm.minutes  ;
+        
+        if (tm.seconds  10) os  0  tm.seconds;
+        else os  tm.seconds;
+        
+        return os;
+    }
+    
+    friend bool operator (const Time& tm1 , const Time& tm2) {
+        if ((tm1.hours3600 + tm1.minutes60 + tm1.seconds)  (tm2.hours3600 + tm2.minutes60 + tm2.seconds)) return 1;
+        else return 0;
+    }
+    friend bool operator (const Time& tm1 , const Time& tm2) {
+        if ((tm1.hours3600 + tm1.minutes60 + tm1.seconds)  (tm2.hours3600 + tm2.minutes60 + tm2.seconds)) return 1;
+        else return 0;
+    }
+    friend bool operator=(const Time& tm1 , const Time& tm2) {
+        if ((tm1.hours3600 + tm1.minutes60 + tm1.seconds) = (tm2.hours3600 + tm2.minutes60 + tm2.seconds)) return 1;
+        else return 0;
+    }
+    friend bool operator=(const Time& tm1 , const Time& tm2) {
+        if ((tm1.hours3600 + tm1.minutes60 + tm1.seconds) = (tm2.hours3600 + tm2.minutes60 + tm2.seconds)) return 1;
+        else return 0;
+    }
+    friend bool operator==(const Time& tm1 , const Time& tm2) {
+        if ((tm1.hours3600 + tm1.minutes60 + tm1.seconds) == (tm2.hours3600 + tm2.minutes60 + tm2.seconds)) return 1;
+        else return 0;
+    }
+    friend bool operator!=(const Time& tm1 , const Time& tm2) {
+        if ((tm1.hours3600 + tm1.minutes60 + tm1.seconds) != (tm2.hours3600 + tm2.minutes60 + tm2.seconds)) return 1;
+        else return 0;
+    }
+};
