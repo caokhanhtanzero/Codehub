@@ -1,0 +1,15 @@
+void printReverse(Node* head)
+{
+    Node *tail, *t;
+    tail = NULL;
+    while (head != NULL) {
+        t = head->next;
+        head->next = tail;
+        tail = head;
+        head = t;
+    }
+    while (tail != NULL){
+		cout << tail->value << " ";
+		tail = tail->next;
+	}
+}
