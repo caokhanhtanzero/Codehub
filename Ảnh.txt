@@ -1,0 +1,25 @@
+void printImage(const Image& img) {
+    for (int i = 0; i < img.height; i ++) {
+        for (int j = 0; j < img.width ; j++) {
+            cout << img.pixels[i*img.width + j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+Image halve(const Image& img) {
+    Image copimg;
+    int k = 0;
+    copimg.width = (img.width + 1)/2;
+    copimg.height = (img.height + 1)/2;
+    copimg.pixels = new int[copimg.height * copimg.width];
+    for (int i = 0; i < img.height; i ++) {
+        for (int j = 0; j < img.width ; j++) {
+            if ((i % 2 == 0) && (j % 2 == 0)) {
+                copimg.pixels[k] = img.pixels[i*img.width + j];
+                k++;
+            }
+        }
+    }
+    return copimg;
+}
