@@ -1,0 +1,35 @@
+class Vector {
+    double x_, y_;
+public:
+    Vector(double x = 0, double y = 0) {
+        x_ = x;
+        y_ = y;
+    }
+    void print(int precision = 2, bool newLine = true) {
+        if (newLine) cout << fixed << setprecision(precision) << "(" << x_  << ", " << y_ << ")" << endl;
+        else cout << fixed << setprecision(precision) << "(" << x_  << ", " << y_ << ")";
+    }
+    Vector add(const Vector& v) const {
+        return Vector(x_ + v.x_, y_ + v.y_);
+    }
+    Vector& addTo(const Vector& v) {
+        x_ = x_ + v.x_;
+        y_ = y_ + v.y_;
+        return *this;
+    }
+};
+
+
+
+class Vector {
+    double x_, y_;
+public:
+    Vector(double x = 0, double y = 0) {
+        x_ = x;
+        y_ = y;
+    }
+    void print(int precision = 2, bool newLine = true) {
+        if (newLine) cout << fixed << setprecision(precision) << "(" << x_  << ", " << y_ << ")" << endl;
+        else cout << fixed << setprecision(precision) << "(" << x_  << ", " << y_ << ")";
+    }
+};
