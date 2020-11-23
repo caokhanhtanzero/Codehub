@@ -1,0 +1,45 @@
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+using namespace std;
+
+int main()
+{
+    double a,b,c;
+    cin >> a >> b >> c;
+
+    double delta = b*b-4*a*c;
+    if( delta < 0 )
+    {
+        double x_thuc,x1_ao,x2_ao;
+        x_thuc = -b/2*a;
+        x1_ao = sqrt(abs(delta))/(2*a);
+        x2_ao = -(x1_ao);
+        if(x2_ao > x1_ao)
+        {
+            cout << fixed << setprecision(2) << x_thuc << " " << x1_ao << endl;
+            cout << fixed << setprecision(2) << x_thuc << " " << x2_ao << endl;
+        }
+        else
+        {
+            cout << fixed << setprecision(2) << x_thuc << " " << x2_ao << endl;
+            cout << fixed << setprecision(2) << x_thuc << " " << x1_ao << endl;
+        }
+        
+    }
+    else if ( delta == 0)
+    {
+        cout << fixed << setprecision(2) << -b/2*a << endl;
+    }
+    else if ( delta > 0)
+    {
+        double x1 = (-b+sqrt(delta))/(2*a);
+        double x2 = (-b-sqrt(delta))/(2*a);
+        if ( x1 > x2)
+        {
+            cout << fixed << setprecision(2) << x2 << endl << x1;
+        }else cout << fixed << setprecision(2) << x1 << endl << x2;
+    }
+
+    return 0;
+}
