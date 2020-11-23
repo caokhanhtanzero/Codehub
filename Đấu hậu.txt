@@ -1,0 +1,56 @@
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+
+struct ToaDoHau
+{
+    int x,y;
+};
+
+void nhapToado(ToaDoHau &hau)
+{
+    cin >> hau.x >> hau.y;
+}
+
+bool xetHangCot(ToaDoHau hau1,ToaDoHau hau2)
+{
+    if (hau1.x == hau2.x) return true;
+    else if(hau1.y == hau2.y) return true;
+    else return false;
+}
+
+bool xetCheo(ToaDoHau hau1, ToaDoHau hau2)
+{
+    int dist = abs(hau1.x - hau2.x);
+    if ( (hau1.y - hau2.y) == dist ) return true;
+    else return false;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    ToaDoHau a[n];
+    for(int i=0;i<n;i++)
+    {
+        nhapToado(a[i]);
+    }
+    for(int i=0;i<n;i++)
+    {
+		for(int j=1;j<n;j++)
+		{
+			if (i != j)
+			{
+				if(xetHangCot(a[i],a[j])==true||xetCheo(a[i],a[j])==true)
+				{
+					cout<<"YES";
+					return 0;
+				}
+			}
+		}
+	} cout<<"NO";
+    return 0;
+}
