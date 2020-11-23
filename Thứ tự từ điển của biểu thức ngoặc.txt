@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+string str;
+
+string kth_balanced(long int n, long int k) {
+    long int q, p = 1, c = 1, c1, m = 1;
+    q = n;
+    while  (p < n)  {
+        p++;
+        c = ((4 * p - 2) * c)/(p + 1);
+    }
+    k = c - (k - 1);
+    while  (true)  {
+        if (q != 0)  {
+            c1 = ((q + 1) * (q - p) * c)/((q + p) * (q - p + 1));
+            if  (k > c1)  {
+                p--;
+                c = c - c1; 
+                k = k - c1;
+                str += '(';
+                m++;
+            } else {
+                q--;
+                c = c1;
+                str += ')';
+                m++;
+            }
+        } else break;
+    }
+    return str;
+}
+
+int main() {
+    long int n, k;
+    cin >> n >> k;
+    cout << kth_balanced(n/2, k);
+    return 0;
+}
