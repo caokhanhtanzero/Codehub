@@ -1,0 +1,529 @@
+#include <iostream>
+
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+    Node(Node* next, int data) {
+        this->data = data;
+        this->next = next;
+    }
+};
+
+void printList(Node* head) {
+    while (head != nullptr) {
+        cout << head->data << " ";
+        head = head->next;
+    }
+}
+
+int main() {
+    int n, data;
+    Node *head = nullptr;
+    cin >> n;
+    for (; n > 0; n--) {
+        cin >> data;
+        head = new Node(head, data);
+    }
+    printList(head);
+    return 0;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#include <iostream>
+
+using namespace std;
+
+//Sửa chữa hàm mySwap dưới đây
+void mySwap(int &a, int &b) {
+    int tmp = a;
+    a = b;
+    b = tmp;
+}
+
+int main() {
+	int a, b;
+	cin >> a;
+    cin >> b;
+
+    // Sửa cách gọi hàm mySwap nếu cần
+    mySwap(a, b);
+
+    cout << a << " " << b;
+
+	return 0;
+}
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+const double MAX_DISTANT = 1.0; 
+
+class Point {
+    double x, y;
+  public:
+    Point (double _x, double _y) {
+        x = _x; y = _y;
+    }
+    bool isClosed(Point p) {
+        if (p.x*p.x + p.y*p.y <= 1) return 1;
+        return 0;
+    }
+    // Viết phương thức isClosed ở đây
+    // bool isClosed(Point p)
+};
+
+int main() {
+	double x1, y1, x2, y2;
+	cin >> x1 >> y1 >> x2 >> y2;
+
+    Point p1(x1, y1), p2(x2, y2);
+    cout << boolalpha << (p1.isClosed(p2));
+
+	return 0;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int sumOfMainDiagonal(int a[][100], int n) {
+    int s = 0;
+    for (int i = 0; i < n; i++)
+        s += a[i][i];
+    return s;
+}
+
+int sumOfSecondaryDiagonal(int a[][100], int n) {
+    int s = 0;
+    for (int i = 0; i < n; i++)
+        s += a[i][n - i - 1];
+    return s;
+}
+
+int main() {
+    int a[100][100], n;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) {
+            cin >> a[i][j];
+        }
+    cout << abs(sumOfMainDiagonal(a, n) - sumOfSecondaryDiagonal(a, n));
+}
+
+
+
+Question author's solution:
+#include <iostream>
+#include <vector>
+
+using namespace std;
+    
+int main() {
+    int N; cin >> N;
+    vector<vector<int> > a(N, vector<int>(N));
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            cin >> a[i][j];
+        }
+    }
+    int s= 0;
+    for (int i = 0; i < N; i++) {
+        s += a[i][i] - a[i][N-i-1];
+    }
+    if (s > 0) cout << s;
+    else cout << -s;
+    
+    return 0;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+void res(string &s) {
+    if (s.length() < 1 ) return;
+    for(int i = 0; i < s.length() - 1; i++) {
+        for(int j = i + 1; j < s.length();) {
+            if (s.at(i) == s.at(j)) {
+                s.erase(j, 1);
+                continue;
+            }
+            break;
+        }
+    }
+    return;
+}
+
+int main() {
+    string s1, s2;
+    cin >> s1 >> s2;
+    res(s1);
+    res(s2);
+    cout << s1 << endl;
+    cout << s2;
+}
+
+
+
+Question author's solution:
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string removeDuplicates(const string & str) {
+
+    char cur = str[0];
+    string nStr = string(1, cur);
+    for (int i = 1; i < str.size(); i++) {
+        if (str[i] != cur) {
+            cur = str[i];
+            nStr += cur;
+        }
+    }
+    return nStr;
+
+}
+
+int main() {
+    //Nhap vao mot chuoi ki tu
+    string str;
+    getline(cin, str);
+    cout << removeDuplicates(str) << endl;
+
+    getline(cin, str);
+    cout << removeDuplicates(str) << endl;
+
+    return 0;
+}
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+void res(string &s) {
+    if (s.length() < 1 ) return;
+    for(int i = 0; i < s.length() - 1; i++) {
+        for(int j = i + 1; j < s.length();) {
+            if (s.at(i) == s.at(j) && s[i] == '_') {
+                s.erase(j, 1);
+                continue;
+            }
+            break;
+        }
+    }
+    return;
+}
+
+int main() {
+    string s1, s2;
+    cin >> s1 >> s2;
+    res(s1);
+    res(s2);
+    cout << s1 << endl;
+    cout << s2;
+}
+
+
+
+Question author's solution:
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string removeDuplicates(const string & str, char ch='_') {
+
+    char cur = str[0];
+    string nStr = string(1, cur);
+    for (int i = 1; i < str.size(); i++) {
+        if (cur != ch || str[i] != ch) {
+            cur = str[i];
+            nStr += string(1, cur);
+        }
+    }
+    return nStr;
+
+}
+
+int main() {
+    //Nhap vao mot chuoi ki tu
+    string str;
+    getline(cin, str);
+    cout << removeDuplicates(str) << endl;
+
+    getline(cin, str);
+    cout << removeDuplicates(str) << endl;
+
+    return 0;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#include <iostream>
+using namespace std;
+
+int GCD(int a, int b) {
+    if (b == 0) return a;
+    return GCD(b, a % b);
+}
+
+int main() {
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
+    cout << GCD(a, GCD(b, GCD(c, d)));
+}
+
+/*
+#include<stdio.h>
+#include<stdio.h>
+int UCLN(int a,int b,int c,int d)
+{
+    int i,ma=a;
+    if (b>ma)
+        ma=b;
+    if (c>ma)
+        ma=c;
+    if (d>ma)
+        ma=d;  
+    if (a==0 && b==0 && c==0 && d==0)
+        return 1;
+    for (i=ma;i>=1;i--)
+        if (a%i ==0 && b%i ==0 && c%i ==0 && d%i ==0)
+            break;
+    return i;
+}
+void main()
+{
+    int a,b,c,d,i,dem=0;
+    printf("Nhap a,b,c,d: \n");
+    scanf("%d%d%d%d",&a,&b,&c,&d);
+    printf("UCLN la: %d ",UCLN(a,b,c,d));
+ 
+}*/
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+#include <iostream>
+using namespace std;
+
+void nhap(int a[], int n) {
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+}
+
+void swap(int &a, int &b)
+{
+    int t = a;
+    a = b;
+    b = t;
+}
+ 
+ 
+int partition (int a[], int low, int high) {
+    int pivot = a[high];
+    int left = low;
+    int right = high - 1;
+    while (true) {
+        while (left <= right && a[left] < pivot) left++;
+        while (right >= left && a[right] > pivot) right--;
+        if (left >= right) break;
+        swap(a[left], a[right]);
+        left++;
+        right--;
+    }
+    swap(a[left], a[high]);
+    return left;
+}
+
+void quickSort(int a[], int low, int high) {
+    if (low < high) {
+        int pi = partition(a, low, high);
+        quickSort(a, low, pi - 1);
+        quickSort(a, pi + 1, high);
+    }
+}
+
+void sol(int a[], int b[], int n) {
+	for ( int i = 0; i < n; i++) {
+		for (int j = i; j < n; j++) {
+			if (a[i] == a[j]) b[i]++;
+		}
+	}
+}
+
+void xuat(int a[], int b[], int n) {
+    int c[100];
+	int max = 1;
+	for ( int i = 0; i < n; i++) {
+		if (b[i] > max) max = b[i];
+	}
+	for ( int i = 0; i < n; i++) {
+		if (b[i] == max) cout << a[i] << " ";
+	}
+}
+
+int main() {
+	int a[100], b[100] = {0}, n;
+	cin >> n;
+	nhap(a, n);
+	quickSort(a, 0, n - 1);
+	sol(a, b, n);
+	xuat(a, b, n);
+}
+
+
+Question author's solution:
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<int> c(2000, 0);
+    int v, n, max = 0;
+    cin >> n;
+    for (; n>0; --n) {
+        cin >> v;
+        if (++c[v] > max) max = c[v];
+    }
+    
+    for (int i = 0; i < c.size(); i++)
+        if (c[i] == max) cout << i << " ";
+    return 0;
+}
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#include <iostream>
+using namespace std;
+
+void nhap(int a[], int n) {
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+}
+
+void sol(int a[], int b[], int n) {
+	for ( int i = 0; i < n; i++) {
+		for (int j = i; j < n; j++) {
+			if (a[i] == a[j]) b[i]++;
+		}
+	}
+}
+
+void xuat(int a[], int b[], int n) {
+	int max = 1;
+	for ( int i = 0; i < n; i++) {
+		if (b[i] > max) max = b[i];
+	}
+	for ( int i = 0; i < n; i++) {
+		if (b[i] == max) cout << a[i] << " ";
+	}
+}
+
+int main() {
+	int a[100], b[100] = {0}, n;
+	cin >> n;
+	nhap(a, n);
+	sol(a, b, n);
+	xuat(a, b, n);
+}
+
+
+
+
+Question author's solution:
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    vector<int> c(2000, 0);
+    vector<int> pos(2000, 0);
+    int v, n, max = 0;
+    cin >> n;
+    for (; n>0; --n) {
+        cin >> v;
+        if (++c[v] > max) max = c[v];
+        if (c[v] == 1) pos[v] = n;
+    }
+    
+    vector<int> val;
+    for (int i = 0; i < c.size(); i++)
+        if (c[i] == max) val.push_back(i);
+    sort(val.begin(), val.end(), [pos](int i,int j) { return pos[i] > pos[j]; });
+    
+    for (auto v : val) cout << v << " ";
+
+    return 0;
+}
