@@ -1,0 +1,36 @@
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+#include<cstring>
+using namespace std;
+
+void nhap(int a[],int n) {
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+    int a[n], a1[10];
+    nhap(a,n);
+
+    for (int i = 0; i < 10; i++)
+        a1[i] = 0;
+
+    for (int i = 0; i < n; i++)
+        a1[a[i]]++;
+
+    int maxtmp = a1[0], tmp = 0;
+    for (int i = 0; i < 10; i++) {
+        if (a1[i] > maxtmp) {
+            maxtmp = a1[i];
+            tmp = i;
+        }
+    }
+
+    cout << tmp;
+
+    return 0;
+}
