@@ -1,0 +1,81 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int snt(int x) {
+    if (x < 2)
+        return 0;
+    for (int i = 2; i <= sqrt(x); i++)
+        if (x % i == 0)
+            return 0;
+    return 1;
+}
+
+int main() {
+    int n, count;
+    n = 7;
+    int *a = new int[7]{-12, 3, 5, -8, 9, 4, 11};
+    for (int i = 0; i < n; i++) {
+        if (*(a + i) > 0) cout << *(a + i) << " ";
+    }
+    int x;
+    x = 8;
+    for (int i = 0; i < n; i++) {
+        if ((*(a + i) < x) && (snt(*(a + i)) == 1)) count ++;
+    }
+    cout << "\n";
+    cout << count;
+}
+
+
+
+
+void trim_left(char *& s) {
+   while(isspace(*s)) s++;
+}
+
+
+
+
+void delete_char(char *S, char c) {
+    long n = strlen(S); 
+    for (int i = 0; i < n; i++)
+        if (S[i] == c) {
+            for (int j = i; j < n; j++)
+                S[j] = S[j + 1];
+            S[n--] = '\0';
+            i --;
+        }
+}
+
+
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int Dem(string s1, string s2) {
+    int ok = 1, dem = 0;
+    for (int i = 0; i < s1.length(); i++) {
+        if (s1[i] == s2[0]) {
+			ok = 1;
+			for (int j = 0; j < s2.length(); j++) {
+	            if (s2[j] != s1[i + j]) {
+					ok = 0;
+					break;
+                }
+            }
+            if (ok == 1) dem++;
+        }
+    }
+    return dem;
+}
+
+int main() {
+	string s1, s2;
+	cin >> s1 >> s2;
+	cout << Dem(s1, s2);
+	return 0;
+}
+
+ 
