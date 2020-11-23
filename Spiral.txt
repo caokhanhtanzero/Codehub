@@ -1,0 +1,98 @@
+#include <iostream>
+using namespace std;
+void sprial(int arr[][100], int n, int m, bool visited[100][100], int xPos, int yPos, int step)
+{
+	bool goRight = false, goDown = false, goLeft = false, goUp = false;
+    while (step != n*m)
+    {
+    	while (visited[yPos][xPos] == false && xPos < m && xPos >= 0 && yPos < n && yPos >= 0)
+    	{
+    		cout<<arr[yPos][xPos]<<" ";
+    		visited[yPos][xPos] = true;
+    		step++;
+    		xPos++;
+    		goRight = true;
+    	}
+    	if (goRight == true && goUp == false)
+    	{
+    		xPos--;
+    		yPos++;
+    		goRight = false;
+		}
+    	while (visited[yPos][xPos] == false && xPos < m && xPos >= 0 && yPos < n && yPos >= 0 )
+	    {
+	    	cout<<arr[yPos][xPos]<<" ";
+	    	visited[yPos][xPos] = true;
+	    	step++;
+	    	yPos++;
+	    	goDown = true;
+	    }
+	    if (goDown == true && goRight == false)
+	    {
+	    	yPos--;
+	    	xPos--;
+	    	goDown = false;
+		}
+    	while (visited[yPos][xPos] == false && xPos < m && xPos >= 0 && yPos < n && yPos >= 0)
+    	{
+    		cout<<arr[yPos][xPos]<<" ";
+    		visited[yPos][xPos] = true;
+    		step++;
+    		xPos--;
+    		goLeft = true;
+    	}
+    	if (goLeft == true && goDown == false)
+    	{
+    		xPos++;
+    		yPos--;
+    		goLeft = false;
+		}
+		
+    	while (visited[yPos][xPos] == false && xPos < m && xPos >= 0 && yPos < n && yPos >= 0)
+    	{
+    		cout<<arr[yPos][xPos]<<" ";
+    		visited[yPos][xPos] = true;
+    		step++;
+    		yPos--;
+    		goUp = true;
+    	}
+    	if(goUp == true && goLeft == false)
+    	{
+    		yPos++;
+    		xPos++;
+    		goUp = false;
+		}
+    	
+    
+	}
+}
+int main()
+{
+    
+    bool visited[100][100];
+    for (int i = 0 ; i < 100 ; i ++)
+    {
+        for (int j = 0 ; j < 100 ; j ++)
+        {
+            
+            visited[i][j] = false;
+        }
+    }
+    int arr[4][100]= { {1 , 2, 3, 4}, 
+                        {12, 13, 14, 5},
+                        {11, 16, 15, 6},
+                        {10, 9, 8, 7}};
+                        
+    int arr1[5][100] ={ {8,9,10},{15,16,17},{22,23,24},{1,8,7},{25,26,27} };
+    int selection;
+    cin >> selection;
+    if(selection == 1)
+    {
+        sprial(arr,4,4,visited,0,0,0);
+    }
+    else
+    {
+        sprial(arr1,5,3,visited,0,0,0);
+    }
+    
+}
