@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+void Them(char s[], int vitrithem, char kituthem) {
+	int n = strlen(s);
+	for (int i = n - 1; i >= vitrithem; i--) {
+
+		s[i + 1] = s[i];
+	}
+	s[vitrithem] = kituthem;
+	s[n + 1] = '\0';
+}
+
+int main() {
+    int vitrithem;
+	char s[30], kituthem;
+	cin >> s;
+	cin >> vitrithem >> kituthem;
+	Them(s, vitrithem, kituthem);
+	cout << s;
+	return 0;
+}
