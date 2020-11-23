@@ -1,0 +1,84 @@
+#include <iostream> 
+#include <cmath>
+using namespace std;
+
+struct Node {
+    int value;
+    struct Node* nextNode;
+
+    Node(int x) {
+        value = x;
+        nextNode = NULL; 
+    }
+};
+
+struct Stack {
+    struct Node* top;
+	Stack() {
+		top = NULL;
+	}
+	
+	void push(int value) {
+		struct Node* newNode = new Node(value);
+		if(top == NULL) {
+			top = newNode;
+		}
+		else {
+			newNode->nextNode = top;
+			top = newNode;
+		}
+	}
+	
+	void pop() {
+		if (top == NULL) {
+			return;
+		}
+		struct Node* temp = top;
+		top = top->nextNode;
+		temp->nextNode = NULL;
+		delete(temp);
+	}
+	
+	void showLast() {
+		if (top == NULL) {
+			return;
+		}
+		cout << top->value << endl;
+	}
+	
+	bool empty() {
+		return top == NULL;
+	}
+};
+
+
+int main() {
+    Stack s;
+    int n, query, element;
+	cin >> n;
+	while (n > 0){
+		cin >> query;
+		switch (query) {
+		case 1:
+			cin >> element;
+			if(s.empty()) {
+				s.push(element);
+			}
+			else {
+				int curMax = element > s.top->value ? element : s.top->value;
+				s.push(curMax);
+			}
+			break;
+		case 2:
+			s.pop();
+			break;
+		case 3:
+			// cout << "--";
+			s.showLast();
+		default:
+			break;
+		}
+		n--;
+	}
+    return 0;
+}
